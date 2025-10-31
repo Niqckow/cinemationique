@@ -1,0 +1,52 @@
+.movie-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+  height: 400px;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #4e4e4e;
+}
+
+.poster {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.title {
+  font-size: 1.1rem;
+  margin: 5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description {
+  font-size: 0.85rem;
+  color: #c9c9c9;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rating {
+  font-weight: bold;
+  color: #f5a623;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
