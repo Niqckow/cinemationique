@@ -7,3 +7,9 @@ export interface Movie {
     genre?: string[];
     posterUrl?: string;
 }
+
+export interface User {
+    token: string
+    username: string
+    role: string
+}

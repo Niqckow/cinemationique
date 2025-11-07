@@ -1,10 +1,16 @@
 import './App.css'
-import MovieList from './components/MovieList'
+import Cine from '.'
+
+import { AuthProvider} from './context/AuthContext'
+
+
 function App() {
 
   return (
     <>
-      <MovieList/>
+      <AuthProvider>
+        <Cine></Cine>
+      </AuthProvider>
     </>
   )
 }

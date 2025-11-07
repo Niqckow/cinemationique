@@ -1,0 +1,11 @@
+.global-container {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.errorT {
+    color: rgb(255, 106, 106)
+}

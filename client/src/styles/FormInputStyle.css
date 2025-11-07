@@ -1,0 +1,81 @@
+.box-container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100px;
+    width: 85%;
+}
+
+.fip-container {
+    width: 15%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.title {
+    color: white;
+    font-size: 13px;
+}
+
+.box-input {
+    border: 1px solid rgb(198, 198, 198);
+    height: 50px;
+    border-radius: 8px;
+    width: 100%;
+    background-color: #383838;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+}
+
+.box-input:focus-within {
+    border: 1px solid cyan
+}
+
+.box-input.error {
+    border: 1px solid rgb(255, 106, 106)
+}
+
+.final-input {
+    width: 85%;
+    height: 85%;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 15px;
+    padding-left: 15px;
+}
+
+.final-input-password {
+    padding-left: 15px;
+    width: 80%;
+    height: 85%;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 15px;
+}
+
+
+.final-input-password-button {
+    background-color: #242424;
+    border: 1px solid aqua;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: aqua;
+    font-size: 1rem;
+
+    box-shadow:
+        4px 4px 10px rgba(0, 0, 0, 0.4),
+        0 0 10px rgba(0, 255, 255, 0.3);
+
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.final-input-password-button.active {
+    background-color: azure;
+}
