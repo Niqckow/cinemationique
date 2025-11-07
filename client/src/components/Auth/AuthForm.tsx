@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import { useAuthContext } from "../../hooks/useAuthContext";
