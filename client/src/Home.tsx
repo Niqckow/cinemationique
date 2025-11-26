@@ -1,5 +1,5 @@
 import LogoutButton from './components/Auth/LogoutButton'
-import guestTextDisplay from './components/guestTextDisplay';
+import GuestTextDisplay from './components/guestTextDisplay';
 import { useAuthContext } from './hooks/useAuthContext'
 
 const Home =() => {
@@ -7,7 +7,7 @@ const Home =() => {
 
     return (
         <div>
-            {user.role ==="guest" && <guestTextDisplay/>}
+            {user.role ==="guest" && <GuestTextDisplay/>}
             <p>Ce site est en construction.</p>
             <LogoutButton/>
         </div>
