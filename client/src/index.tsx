@@ -1,12 +1,11 @@
 import AuthForm from './components/Auth/AuthForm'
-import LogoutButton from './components/Auth/LogoutButton'
+import Home from './Home'
 import { useAuthContext } from './hooks/useAuthContext'
 
 const Cine: React.FC = () => {
     const {isAuth} = useAuthContext()
     return <>
-        {isAuth && <p>Ce site est en construction.</p>}
-        {isAuth && <LogoutButton/>}
+        {isAuth && <Home/>}
         {!isAuth && <AuthForm/>}
     </>
 }
