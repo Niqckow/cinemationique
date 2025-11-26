@@ -2,6 +2,7 @@ import axios from "axios";
 import {useState } from "react";
 import getAuthRoute from "../helpers/getRoutes";
 
+
 interface User {
     id: string,
     username: string,
@@ -23,8 +24,13 @@ export const useAuth = () => {
         try {
             const res = await axios.post<AuthResponse>(`${API_URL}/login`, { email, password });
             return res.data
-        } catch (err: any) {
-            const message = err.response?.data?.message
+        } catch (err) {
+            let message = "Une erreur est survenue."
+            if (axios.isAxiosError(err)) {
+                message = err.response?.data?.message || err.message
+            } else if (err instanceof Error) {
+                message = err.message;
+            }
             throw new Error(message)
         } finally {
             setLoading(false);
@@ -41,8 +47,13 @@ export const useAuth = () => {
                 email,
             });
             return res.data
-        } catch (err: any) {
-            const message = err.response?.data?.message || "Erreur d'inscription";
+        } catch (err) {
+            let message = "Erreur lors de l'inscription."
+            if (axios.isAxiosError(err)) {
+                message = err.response?.data?.message || err.message
+            } else if (err instanceof Error) {
+                message = err.message;
+            }
             throw new Error(message)
         } finally {
             setLoading(false);
@@ -53,8 +64,13 @@ export const useAuth = () => {
         try {
             const res = await axios.post<AuthResponse>(`${API_URL}/guest`);
             return res.data
-        } catch (err: any) {
-            const message = err.response?.data?.message ||"Impossible de se connecter en invité";
+        } catch (err) {
+            let message = "Impossible de se connecter en invité."
+            if (axios.isAxiosError(err)) {
+                message = err.response?.data?.message || err.message
+            } else if (err instanceof Error) {
+                message = err.message;
+            }
             throw new Error(message)
         } finally {
             setLoading(false);
