@@ -1,6 +1,7 @@
 import LogoutButton from './components/Auth/LogoutButton'
 import GuestTextDisplay from './components/guestTextDisplay';
 import { useAuthContext } from './hooks/useAuthContext'
+import AddMovieForm from './components/Movies/AddMovieForm';
 
 const Home =() => {
     const {user} = useAuthContext()
@@ -8,7 +9,7 @@ const Home =() => {
     return (
         <div>
             {user.role ==="guest" && <GuestTextDisplay/>}
-            <p>Ce site est en construction.</p>
+            <AddMovieForm/>
             <LogoutButton/>
         </div>
     )
