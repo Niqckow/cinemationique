@@ -2,6 +2,7 @@ import {useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import type { User } from "../types";
 import { AuthContext } from "../hooks/useAuthContext";
+import { isValidEmail } from "../helpers/isValidEmail";
 
 export const AuthProvider: React.FC<{ children: React.ReactNode}> = ({children}) => {
     const {login: apiLogin, guestLogin: apiGuestLogin, register: apiRegister} = useAuth()
@@ -12,6 +13,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode}> = ({children})
 
     const login = async (email: string, password: string) => {
         setError(null)
+        if (!isValidEmail(email)) {
+            setError("L'adresse mail est incorrecte")
+            return
+        }
         try {
             const data = await apiLogin(email, password);
             if (!data) return
