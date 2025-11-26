@@ -67,6 +67,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode}> = ({children})
     }
 
     const logout = () => {
+        setError(null)
         localStorage.removeItem("token")
         localStorage.removeItem("username")
         setUser({token: "", username: "", role: ""})
