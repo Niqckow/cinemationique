@@ -3,6 +3,7 @@ import { useAuth } from "../hooks/useAuth";
 import type { User } from "../types";
 import { AuthContext } from "../hooks/useAuthContext";
 import { isValidEmail } from "../helpers/isValidEmail";
+import isValidUsername from "../helpers/isValidUsername"
 
 export const AuthProvider: React.FC<{ children: React.ReactNode}> = ({children}) => {
     const {login: apiLogin, guestLogin: apiGuestLogin, register: apiRegister} = useAuth()
@@ -17,6 +18,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode}> = ({children})
             setError("L'adresse mail est incorrecte")
             return
         }
+        if (!password) {
+            setError("Le mot de passe ne peut pas être vide")
+            return
+        }
         try {
             const data = await apiLogin(email, password);
             if (!data) return
@@ -24,8 +29,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode}> = ({children})
             localStorage.setItem("token", data.token)
             localStorage.setItem("username", data.user.username)
             console.log("role", user.role)
-        } catch (err: any) {
-            setError(err.message)
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message)
+            } else {
+                setError("Une erreur est survenue")
+            }
         }
     }
 
@@ -48,13 +57,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode}> = ({children})
             setUser({token: data.token, username: data.user.username, role: data.user.role})
             localStorage.setItem("token", data.token)
             localStorage.setItem("username", data.user.username)
-        } catch (err: any) {
-            setError(err.message)
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message)
+            } else {
+                setError("Une erreur est survenue")
+            }
         }
     }
 
     const register = async(email: string, username: string, password: string) => {
         setError(null)
+        const usernameValidation = isValidUsername(username)
+        if (usernameValidation !== true && typeof usernameValidation === "string") {
+            setError(usernameValidation)
+            return
+        }
+        if (!password) {
+            setError("Le mot de passe ne peut pas être vide")
+            return
+        }
         try {
             console.log("auth context", "email", email, "username", username, "password", password)
             const data = await apiRegister(email, username, password)
@@ -66,8 +88,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode}> = ({children})
             setUser({token: data.token, username: data.user.username, role: data.user.role})
             localStorage.setItem("token", data.token)
             localStorage.setItem("username", data.user.username)
-        } catch (err: any) {
-            setError(err.message)
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message)
+            } else {
+                setError("Une erreur est survenue")
+            }
         }
     }
 
