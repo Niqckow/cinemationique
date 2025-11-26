@@ -28,8 +28,6 @@ const RegisterForm: React.FC = () => {
         if (!isValidPassword(password)) {
             setCustomError("Le mot de passe est invalide")
         }
-        
-        console.log("register button clicked")
         console.log("register form", "email", email, "username", username, "password", password)
         register(email, username, password)
     }

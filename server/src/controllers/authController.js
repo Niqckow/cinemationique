@@ -11,6 +11,9 @@ exports.registerUser = async (req, res) => {
     if (email.toLowerCase() === "guest@cinemationique.com") {
       return res.status(400).json({ message: "Email invalide" });
     }
+    if (role != "user") {
+      return res.status(400).json({message: "Requête invalide"})
+    }
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "Cet utilisateur existe déjà" });
@@ -71,6 +74,7 @@ exports.loginGuest = async (req, res) => {
         if (!guest) {
             guest =  await User.create({
                 email: "guest@cinemationique.com",
+                username: "guest",
                 password: await bcrypt.hash("guestpassword", 10),
                 role: "guest"
             })
@@ -89,7 +93,8 @@ exports.loginGuest = async (req, res) => {
         };
 
         res.status(200).json({ user: safeUser, token });
-    } catch (error) {
+    } catch (err) {
+      console.log(err.message)
         res.status(500).json({ message: "Erreur serveur", error: err.message });
     }
 }
