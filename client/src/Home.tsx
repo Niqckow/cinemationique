@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const Home =() => {
     const {user} = useAuthContext()
-    const [isWaiting, setIsWaiting] = useState(true);
+    const isWaiting = useState(true);
 
     return (
         <div>
